@@ -1,0 +1,1 @@
+/home/pi/clock/autostart/autostart.sh

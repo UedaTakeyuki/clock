@@ -1,0 +1,50 @@
+<!--
+ * @author Dr. Takeyuki UEDA
+ * @copyright Copyright© Atelier UEDA 2019 - All rights reserved.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
+    />
+  </head>
+  <body>
+    <p id="clock" style="font-size: 72px;
+    /* https://stackoverflow.com/questions/3820325/overlay-opaque-div-over-youtube-iframe */
+    /*position:fixed;
+    bottom:0;
+    left:10;*/
+    font-weight: lighter;
+    background:#000;
+    opacity:0.9;
+    /*background:rgba(255,255,255,0.8); or just this*/
+    z-index:50;
+    color:#fff;
+    /*padding-left:10px;
+    padding-right:10px;*/"></p>
+
+    <script>
+      //-------------------------------------------------------------
+      //
+      // Clock handler
+      //
+      //-------------------------------------------------------------
+      var clock = document.getElementById("clock");
+      function clockwork() {
+        time = new Date();
+        clock.innerHTML = //time.getFullYear()+"/"
+                          //+(time.getMonth()+1)+"/"
+                          //+time.getDate()+" "
+                          +("0" + time.getHours()).slice(-2)+":"
+                          +("0" + time.getMinutes()).slice(-2)+":"
+                          +("0" + time.getSeconds()).slice(-2);
+        setTimeout(clockwork, 100);
+      }
+      clockwork();
+    </script>
+
+  </body>
+</html>
