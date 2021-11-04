@@ -6,7 +6,8 @@ After=rc-local.service
 User=pi
 Environment=DISPLAY=:0
 WorkingDirectory=/home/pi/clock
-ExecStart=/usr/bin/chromium-browser --app=file:///home/pi/clock/screen.html
+ExecStart=/home/pi/clock/build-clock-Desktop-Release/clock
+#ExecStart=/usr/bin/chromium-browser --app=file:///home/pi/clock/screen.html
 #ExecStart=/usr/bin/chromium-browser --window-size=100,100 --window-position=1700,950 --app=file:///home/pi/clock/screen.html
 Restart=always
 #RestartSec=90
