@@ -22,10 +22,15 @@ MainWindow::MainWindow(QWidget *parent)
         ui->label->setText(dt.toString("hh:mm:ss"));});
     timer->start(50);
 
+    // https://stackoverflow.com/questions/24239822/how-to-remove-space-margin-that-between-qmainwindow-and-mdiarea/24240025
+    centralWidget()->layout()->setContentsMargins(0, 0, 0, 0);
+    statusBar()->hide();
+
     // http://pido.seesaa.net/article/183717126.html
     QSettings settings("setting.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("geometry").toByteArray());
     restoreState(settings.value("windowState").toByteArray());
+
 
 }
 
