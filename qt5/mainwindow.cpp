@@ -1,14 +1,20 @@
 #include "mainwindow.h"
+#include "display.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include <QTimer>
 #include <QDateTime>
 #include <QSettings>
+#include <QMessageBox>
+#include <QProcess>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    Display *display = new Display;
+    qDebug() << display->getWidth() << ":" << display->getHight();
+
     ui->setupUi(this);
     QTimer *timer = new QTimer(this);
     /*

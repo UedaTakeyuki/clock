@@ -2,3 +2,5 @@
 2021.11.03 add qt5 project
 2021.11.04 replace from chrome version to qt version due to less cpu occupation (20% -> 1%)
            save window geometory and status
+
+2021.11.21 get display resolution

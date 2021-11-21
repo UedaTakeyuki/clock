@@ -51,9 +51,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../qt5/main.cpp \
-		../qt5/mainwindow.cpp moc_mainwindow.cpp
+		../qt5/mainwindow.cpp \
+		../qt5/display.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		display.o \
 		moc_mainwindow.o
 DIST          = /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/unix.conf \
@@ -130,8 +132,10 @@ DIST          = /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/lex.prf \
-		../qt5/clock.pro ../qt5/mainwindow.h ../qt5/main.cpp \
-		../qt5/mainwindow.cpp
+		../qt5/clock.pro ../qt5/mainwindow.h \
+		../qt5/display.h ../qt5/main.cpp \
+		../qt5/mainwindow.cpp \
+		../qt5/display.cpp
 QMAKE_TARGET  = clock
 DESTDIR       = 
 TARGET        = clock
@@ -317,8 +321,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt5/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt5/main.cpp ../qt5/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt5/mainwindow.h ../qt5/display.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt5/main.cpp ../qt5/mainwindow.cpp ../qt5/display.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../qt5/mainwindow.ui $(DISTDIR)/
 
 
@@ -384,8 +388,12 @@ main.o: ../qt5/main.cpp ../qt5/mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../qt5/main.cpp
 
 mainwindow.o: ../qt5/mainwindow.cpp ../qt5/mainwindow.h \
+		../qt5/display.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../qt5/mainwindow.cpp
+
+display.o: ../qt5/display.cpp ../qt5/display.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o display.o ../qt5/display.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
