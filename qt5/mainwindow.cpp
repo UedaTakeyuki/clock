@@ -30,7 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // https://stackoverflow.com/questions/24239822/how-to-remove-space-margin-that-between-qmainwindow-and-mdiarea/24240025
     centralWidget()->layout()->setContentsMargins(0, 0, 0, 0);
-    statusBar()->hide();
 
     // http://pido.seesaa.net/article/183717126.html
     QSettings settings("setting.ini", QSettings::IniFormat);
