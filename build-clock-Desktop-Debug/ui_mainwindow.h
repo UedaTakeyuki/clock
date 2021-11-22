@@ -41,6 +41,7 @@ public:
         label = new QLabel(centralwidget);
         label->setObjectName(QStringLiteral("label"));
         QFont font1;
+        font1.setFamily(QStringLiteral("PibotoLt"));
         font1.setPointSize(62);
         font1.setBold(true);
         font1.setWeight(75);

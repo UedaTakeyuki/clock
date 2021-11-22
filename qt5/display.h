@@ -8,10 +8,10 @@ public:
   Display();
   ~Display();
   int getWidth(){return width;}
-  int getHight(){return hight;}
+  int getHeight(){return height;}
 
 private:
   int width;
-  int hight;
+  int height;
 };
 #endif // DISPLAY_H

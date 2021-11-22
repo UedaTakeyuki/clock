@@ -31,9 +31,9 @@ Display::Display()
 */
     bool is_ok;
     width = w.toInt(&is_ok, 10);
-    hight = h.toInt(&is_ok, 10);
+    height = h.toInt(&is_ok, 10);
 
-    qDebug() << width << ":" << hight;
+    qDebug() << width << ":" << height;
 }
 
 Display::~Display()

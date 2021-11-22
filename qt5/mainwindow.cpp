@@ -7,15 +7,22 @@
 #include <QSettings>
 #include <QMessageBox>
 #include <QProcess>
+#include <QFont>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     Display *display = new Display;
-    qDebug() << display->getWidth() << ":" << display->getHight();
+    qDebug() << display->getWidth() << ":" << display->getHeight();
 
     ui->setupUi(this);
+
+    int fontsize = display->getHeight()/18;
+    QFont f("PibotoLt", fontsize, QFont::Bold);
+    ui->label->setFont(f);
+
+
     QTimer *timer = new QTimer(this);
     /*
     connect(timer, &QTimer::timeout, this, [](){
@@ -32,19 +39,21 @@ MainWindow::MainWindow(QWidget *parent)
     centralWidget()->layout()->setContentsMargins(0, 0, 0, 0);
 
     // http://pido.seesaa.net/article/183717126.html
+    /*
     QSettings settings("setting.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("geometry").toByteArray());
     restoreState(settings.value("windowState").toByteArray());
-
+    */
 
 }
 
 MainWindow::~MainWindow()
 {
     // http://pido.seesaa.net/article/183717126.html
+    /*
     QSettings setting("setting.ini", QSettings::IniFormat);
     setting.setValue("geometry", saveGeometry());
     setting.setValue("windowState", saveState());
-
+    */
     delete ui;
 }
