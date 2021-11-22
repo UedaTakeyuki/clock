@@ -4,3 +4,4 @@
            save window geometory and status
 
 2021.11.21 get display resolution
+2021.11.22 adapt for screen size
