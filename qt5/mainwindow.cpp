@@ -37,13 +37,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     // https://stackoverflow.com/questions/24239822/how-to-remove-space-margin-that-between-qmainwindow-and-mdiarea/24240025
     centralWidget()->layout()->setContentsMargins(0, 0, 0, 0);
-
+    restoreSettings();
+/*
     // http://pido.seesaa.net/article/183717126.html
     QSettings settings("setting.ini", QSettings::IniFormat);
     restoreGeometry(settings.value("geometry").toByteArray());
     qDebug() << "restoreGeometry called.";
     restoreState(settings.value("windowState").toByteArray());
     qDebug() << "restoreState called.";
+*/
 
 }
 
@@ -88,14 +90,19 @@ void MainWindow::setDefaultGeometory(){
     int height = screenHeight/10;
     int width = screenWidth/6;
     int x=0, y=0;
+    x=screenWidth - width;
+    y=screenHeight - height;
+
+/*
     if (screenWidth >= 1800 && screenHeight >= 1080){
       x=screenWidth - width*1.1;
       y=screenHeight - height*1.7;
     } else {
-      /* screenWidth = 720, screenHeight = 480 */
+      // screenWidth = 720, screenHeight = 480
       x=screenWidth - width*1.7;
       y=screenHeight - height*2.2;
     }
+*/
     qDebug() << "screenWidth: " << screenWidth;
     qDebug() << "screenHeight: " << screenHeight;
     qDebug() << "height: " << height;
