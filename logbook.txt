@@ -5,3 +5,5 @@
 
 2021.11.21 get display resolution
 2021.11.22 adapt for screen size
+
+2023.03.26 change the method of getting display resolution
