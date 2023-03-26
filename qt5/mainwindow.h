@@ -14,6 +14,11 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    // https://doc.qt.io/qt-6/qsettings.html
+    void restoreSettings();
+    void saveSettings();
+    void setDefaultGeometory();
 private:
     Ui::MainWindow *ui;
 };

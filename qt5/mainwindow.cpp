@@ -49,9 +49,58 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    saveSettings();
+    delete ui;
+}
+
+void MainWindow::saveSettings()
+{
     // http://pido.seesaa.net/article/183717126.html
     QSettings setting("setting.ini", QSettings::IniFormat);
     setting.setValue("geometry", saveGeometry());
     setting.setValue("windowState", saveState());
-    delete ui;
+}
+
+void MainWindow::restoreSettings()
+{
+    // http://pido.seesaa.net/article/183717126.html
+    QSettings settings("setting.ini", QSettings::IniFormat);
+
+    // resotre geometory or set default
+    const auto geometry = settings.value("geometry", QByteArray()).toByteArray();
+    if (geometry.isEmpty())
+        setDefaultGeometory();
+    else
+        restoreGeometry(geometry);
+
+    // restore windowState
+    const auto windowState = settings.value("windowState", QByteArray()).toByteArray();
+    if (!windowState.isEmpty())
+        restoreState(windowState);
+}
+
+void MainWindow::setDefaultGeometory(){
+    Display *display = new Display;
+
+    // set default geometory
+    int screenWidth = display->getWidth();
+    int screenHeight = display->getHeight();
+    int height = screenHeight/10;
+    int width = screenWidth/6;
+    int x=0, y=0;
+    if (screenWidth >= 1800 && screenHeight >= 1080){
+      x=screenWidth - width*1.1;
+      y=screenHeight - height*1.7;
+    } else {
+      /* screenWidth = 720, screenHeight = 480 */
+      x=screenWidth - width*1.7;
+      y=screenHeight - height*2.2;
+    }
+    qDebug() << "screenWidth: " << screenWidth;
+    qDebug() << "screenHeight: " << screenHeight;
+    qDebug() << "height: " << height;
+    qDebug() << "width: " << width;
+    qDebug() << "x: " << x;
+    qDebug() << "y: " << y;
+    setGeometry(x,y,width,height);
 }
