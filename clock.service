@@ -14,6 +14,7 @@ Restart=always
 RestartSec=30
 Type=simple
 PIDFile=/var/run//clock.pid
+User=pi
 
 [Install]
 WantedBy=multi-user.target

@@ -3,6 +3,7 @@
 
 #include <QApplication>
 #include <QDebug>
+#include <QSettings>
 
 int main(int argc, char *argv[])
 {
@@ -11,6 +12,7 @@ int main(int argc, char *argv[])
 
     Display *display = new Display;
 
+    // set default geometory
     int screenWidth = display->getWidth();
     int screenHeight = display->getHeight();
     int height = screenHeight/10;
@@ -31,6 +33,17 @@ int main(int argc, char *argv[])
     qDebug() << "x: " << x;
     qDebug() << "y: " << y;
     w.setGeometry(x,y,width,height);
+
+    // set stored geometory if available
+    QSettings settings("setting.ini", QSettings::IniFormat);
+    const auto geometry = settings.value("geometry", QByteArray()).toByteArray();
+    if (!geometry.isEmpty()){
+        w.restoreGeometry(settings.value("geometry").toByteArray());
+    }
+    qDebug() << "restoreGeometry called.";
+    w.restoreState(settings.value("windowState").toByteArray());
+    qDebug() << "restoreState called.";
+
 
     w.show();
 
